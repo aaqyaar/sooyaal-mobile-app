@@ -9,15 +9,18 @@ import {
   View,
 } from "react-native";
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
     if (email.length < 1 || password.length < 1) {
       return alert("Please enter your email and password");
+    } else if (email === "abdizamedmo@gmail.com" && password === "aaqyaar1") {
+      return navigation.navigate("Home");
+    } else {
+      return alert("Invalid email or password");
     }
-    console.log("Login");
   };
   return (
     <View style={styles.container}>
@@ -33,7 +36,7 @@ export default function LoginScreen() {
         autoCorrect={false}
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor={"#f5f5f5"}
+        placeholderTextColor={"#171717"}
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
@@ -44,14 +47,14 @@ export default function LoginScreen() {
         placeholder="Password"
         secureTextEntry={true}
         passwordRules="required: lower; required: upper; required: digit; required: [-]; minlength: 8;"
-        placeholderTextColor={"#f5f5f5"}
+        placeholderTextColor={"#171717"}
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
 
       <Text
         style={{
-          color: "#f5f5f5",
+          color: "#171717",
           marginTop: 20,
           //   justifyContent: "flex-end",
           alignItems: "flex-end",
@@ -65,8 +68,8 @@ export default function LoginScreen() {
       </TouchableOpacity>
 
       <Text
-        style={{ color: "#f5f5f5", marginTop: 20, justifyContent: "flex-end" }}
-        onPress={() => Linking.openURL("https://www.google.com")}
+        style={{ color: "#171717", marginTop: 20, justifyContent: "flex-end" }}
+        onPress={() => Linking.openURL("https://abdizamedmo.netlify.app")}
       >
         Don't have an account? Sign up
       </Text>
@@ -76,7 +79,7 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#171717",
+    // backgroundColor: "#171717",
     height: "100%",
     width: "100%",
     // paddingTop: 50,
@@ -84,12 +87,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   heading: {
-    color: "#f5f5f5",
+    color: "#171717",
     fontSize: 30,
     fontWeight: "900",
   },
   content: {
-    color: "#f5f5f5",
+    color: "#171717",
     fontSize: 15,
     textAlign: "center",
     width: "80%",
@@ -98,9 +101,9 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: "transparent",
     width: "80%",
-    borderColor: "#f5f5f5",
+    borderColor: "#171717",
     borderWidth: 1,
-    color: "#f5f5f5",
+    color: "#171717",
     height: 50,
     borderRadius: 10,
     marginTop: 20,

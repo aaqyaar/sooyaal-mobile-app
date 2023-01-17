@@ -11,9 +11,9 @@ export default function ToggleMode() {
         style={{
           width: 30,
           height: 30,
-          backgroundColor: "transparent",
-          borderColor: "#f5f5f5",
-          borderWidth: 1,
+          backgroundColor: "#171717",
+          // borderColor: "#f5f5f5",
+
           // padding: 10,
           borderRadius: 5,
 
