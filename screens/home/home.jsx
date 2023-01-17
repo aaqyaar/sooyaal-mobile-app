@@ -6,11 +6,32 @@ import {
   View,
   Vibration,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
+  // const getUsers = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "http://localhost/php-training/api/posts.php",
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
   return (
     <View style={styles.container}>
       <TouchableOpacity

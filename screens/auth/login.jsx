@@ -8,18 +8,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import useAuth from "../../hooks/useAuth";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (email.length < 1 || password.length < 1) {
       return alert("Please enter your email and password");
-    } else if (email === "abdizamedmo@gmail.com" && password === "aaqyaar1") {
-      return navigation.navigate("Home");
     } else {
-      return alert("Invalid email or password");
+      const res = await login(email, password);
+      console.log(res);
+      // navigation.navigate("Home");
     }
   };
   return (
