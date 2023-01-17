@@ -7,7 +7,7 @@ export default function App() {
   return (
     <AuthProvider>
       <Router />
-      <ToggleMode />
+      {/* <ToggleMode /> */}
       <StatusBar style="auto" />
     </AuthProvider>
   );

@@ -5,36 +5,20 @@ import {
   TouchableOpacity,
   View,
   Vibration,
+  Image,
 } from "react-native";
 import React, { useEffect } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
+import useAuth from "../../hooks/useAuth";
 
 export default function HomeScreen({ navigation }) {
-  // const getUsers = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "http://localhost/php-training/api/posts.php",
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const { auth } = useAuth();
+  console.log(auth);
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
   return (
     <View style={styles.container}>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{
           position: "absolute",
           top: 60,
@@ -50,6 +34,35 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("Login")}
       >
         <Ionicons name="arrow-back-outline" size={24} color="black" />
+      </TouchableOpacity> */}
+      <TouchableOpacity
+        style={{
+          position: "absolute",
+          top: 60,
+          right: 15,
+          bottom: 2,
+
+          height: 40,
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "row",
+        }}
+        onPress={() => navigation.navigate("Profile")}
+      >
+        <Image
+          // source={"https://github.com/aaqyaar.png"}
+          source={{
+            uri:
+              auth?.data?.photoURL ||
+              "https://www.moveo.it/wp-content/uploads/2018/10/empty-avatar.png",
+          }}
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: 50,
+          }}
+        />
       </TouchableOpacity>
       {/* card with posts using ScrollView */}
       <ScrollView style={styles.scrollView}>

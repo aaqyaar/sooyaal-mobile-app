@@ -19,9 +19,16 @@ export default function LoginScreen({ navigation }) {
     if (email.length < 1 || password.length < 1) {
       return alert("Please enter your email and password");
     } else {
-      const res = await login(email, password);
-      console.log(res);
-      // navigation.navigate("Home");
+      try {
+        const response = await login(email, password);
+        if (response.data && response.data) {
+          navigation.navigate("Home");
+        } else {
+          alert(response.message ? response.message : "An error occured");
+        }
+      } catch (error) {
+        alert(error);
+      }
     }
   };
   return (
