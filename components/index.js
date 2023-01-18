@@ -1,1 +1,1 @@
-export { default as ToggleMode } from "./toggleMode";
+export { default as ToggleMode } from "./toggle-mode";
