@@ -53,23 +53,22 @@ export default function RegisterScreen() {
           autoCapitalize="words"
           autoCorrect={false}
           autoCompleteType="name"
+          keyboardType="default"
           style={styles.input}
         />
         <Text style={styles.label}>Email</Text>
         <TextInput
           numberOfLines={1}
-          autoCapitalize="words"
+          autoCapitalize="none"
+          keyboardType="email-address"
           autoCorrect={false}
-          autoCompleteType="name"
+          autoCompleteType="email"
           style={styles.input}
         />
         <Text style={styles.label}>Phone Number</Text>
         <TextInput
           numberOfLines={1}
-          //   keyboardType="phone-pad"
-          //   autoCapitalize="words"
-          //   autoCorrect={false}
-          //   autoCompleteType="name"
+          keyboardType="phone-pad"
           style={styles.input}
           value={phone}
           maxLength={15}
