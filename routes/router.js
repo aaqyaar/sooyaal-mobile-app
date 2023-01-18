@@ -1,7 +1,12 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen, LoginScreen, VerifyCodeScreen } from "../screens";
+import {
+  HomeScreen,
+  LoginScreen,
+  RegisterScreen,
+  VerifyCodeScreen,
+} from "../screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,7 +16,7 @@ export default function Router() {
     <NavigationContainer>
       <Stack.Navigator
         // initialRouteName={isAuth ? "Home" : "Login"}
-        initialRouteName="VerifyCode"
+        initialRouteName="Login"
       >
         <Stack.Screen
           name="Home"
@@ -25,6 +30,13 @@ export default function Router() {
           component={LoginScreen}
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{
+            headerTitle: "Create Account",
           }}
         />
         <Stack.Screen

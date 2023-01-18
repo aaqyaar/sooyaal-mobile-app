@@ -77,21 +77,30 @@ export default function LoginScreen({ navigation }) {
       </TouchableOpacity>
 
       <Text
-        style={{ color: "#171717", marginTop: 20, justifyContent: "flex-end" }}
-        onPress={() => Linking.openURL("https://abdizamedmo.netlify.app")}
+        style={{
+          color: "#171717",
+          marginTop: 20,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        Don't have an account? Sign up
+        Don't have an account?{" "}
       </Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+        <Text
+          style={{ color: "#171717", fontWeight: "bold", paddingVertical: 2 }}
+        >
+          Sign up
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: "#171717",
-    height: "100%",
-    width: "100%",
-    // paddingTop: 50,
+    backgroundColor: "#fff",
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
