@@ -11,13 +11,14 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 import useAuth from "../../hooks/useAuth";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen({ navigation }) {
   const { auth } = useAuth();
   console.log(auth);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity
         style={{
           position: "absolute",
@@ -138,7 +139,7 @@ export default function HomeScreen({ navigation }) {
           );
         })}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "#171717",
     height: "100%",
     width: "100%",
-    marginTop: 100,
+    marginTop: 60,
     paddingHorizontal: 25,
     // alignItems: "center",
     // justifyContent: "center",

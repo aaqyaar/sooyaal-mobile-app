@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function VerifyCodeScreen() {
   const [inputs, setInputs] = useState(["", "", "", "", "", ""]);
@@ -31,7 +32,7 @@ export default function VerifyCodeScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text
         style={{
           fontSize: 30,
@@ -88,7 +89,7 @@ export default function VerifyCodeScreen() {
           Verify Code
         </Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 

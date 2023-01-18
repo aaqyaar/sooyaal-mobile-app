@@ -6,15 +6,17 @@ import {
   View,
   Image,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { EvilIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function RegisterScreen() {
   const [image, setImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("+252 ");
+
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -51,7 +53,7 @@ export default function RegisterScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Name</Text>
         <TextInput
@@ -157,7 +159,7 @@ export default function RegisterScreen() {
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -198,11 +200,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
 
-    padding: 20,
+    padding: 10,
   },
 
   inputContainer: {
-    marginTop: 20,
+    marginTop: 0,
   },
 
   label: {

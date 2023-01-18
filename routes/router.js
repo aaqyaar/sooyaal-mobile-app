@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
+  ForgotPasswordScreen,
   HomeScreen,
   LoginScreen,
   RegisterScreen,
@@ -30,6 +31,14 @@ export default function Router() {
           component={LoginScreen}
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPasswordScreen}
+          options={{
+            headerShadowVisible: false,
+            headerTitle: "Forgot Password",
           }}
         />
         <Stack.Screen

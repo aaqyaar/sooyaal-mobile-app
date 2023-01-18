@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import useAuth from "../../hooks/useAuth";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ export default function LoginScreen({ navigation }) {
     }
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.heading}>Sooyaal</Text>
       <Text style={styles.content}>
         Login with your email and password to access your account. If you don't
@@ -45,7 +46,7 @@ export default function LoginScreen({ navigation }) {
         autoCorrect={false}
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor={"#171717"}
+        placeholderTextColor={"#a3a3a3"}
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
@@ -56,17 +57,18 @@ export default function LoginScreen({ navigation }) {
         placeholder="Password"
         secureTextEntry={true}
         passwordRules="required: lower; required: upper; required: digit; required: [-]; minlength: 8;"
-        placeholderTextColor={"#171717"}
+        placeholderTextColor={"#a3a3a3"}
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
 
-      <View
+      <TouchableOpacity
         style={{
           width: "80%",
           justifyContent: "flex-end",
           flexDirection: "row",
         }}
+        onPress={() => navigation.navigate("ForgotPassword")}
       >
         <Text
           style={{
@@ -77,7 +79,7 @@ export default function LoginScreen({ navigation }) {
         >
           Forgot your password?
         </Text>
-      </View>
+      </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={{ color: "#f5f5f5", fontSize: 20 }}>Login</Text>
@@ -100,7 +102,7 @@ export default function LoginScreen({ navigation }) {
           Sign up
         </Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
