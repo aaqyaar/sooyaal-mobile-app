@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import {
-  Linking,
+  Image,
   StyleSheet,
   Text,
   TextInput,
@@ -19,16 +19,16 @@ export default function LoginScreen({ navigation }) {
     if (email.length < 1 || password.length < 1) {
       return alert("Please enter your email and password");
     } else {
-      try {
-        const response = await login(email, password);
-        if (response.data && response.data) {
-          navigation.navigate("Home");
-        } else {
-          alert(response.message ? response.message : "An error occured");
-        }
-      } catch (error) {
-        alert(error);
-      }
+      // try {
+      //   const response = await login(email, password);
+      //   if (response.data && response.data) {
+      navigation.navigate("Home");
+      //   } else {
+      //     alert(response.message ? response.message : "An error occured");
+      //   }
+      // } catch (error) {
+      //   alert(error);
+      // }
     }
   };
   return (
@@ -61,16 +61,23 @@ export default function LoginScreen({ navigation }) {
         onChangeText={(text) => setPassword(text)}
       />
 
-      <Text
+      <View
         style={{
-          color: "#171717",
-          marginTop: 20,
-          //   justifyContent: "flex-end",
-          alignItems: "flex-end",
+          width: "80%",
+          justifyContent: "flex-end",
+          flexDirection: "row",
         }}
       >
-        Forgot your password?
-      </Text>
+        <Text
+          style={{
+            color: "#171717",
+            marginTop: 20,
+            // flex: 1,
+          }}
+        >
+          Forgot your password?
+        </Text>
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={{ color: "#f5f5f5", fontSize: 20 }}>Login</Text>
@@ -114,16 +121,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     width: "80%",
-    marginTop: 20,
+    marginTop: 10,
   },
   input: {
     backgroundColor: "transparent",
     width: "80%",
-    borderColor: "#171717",
+    borderColor: "#f5f5f5",
     borderWidth: 1,
     color: "#171717",
     height: 50,
-    borderRadius: 10,
+    borderRadius: 4,
     marginTop: 20,
     padding: 10,
     shadowColor: "#000",

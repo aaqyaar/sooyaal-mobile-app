@@ -6,7 +6,7 @@ import {
   View,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { EvilIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
@@ -14,12 +14,15 @@ import { Feather } from "@expo/vector-icons";
 export default function RegisterScreen() {
   const [image, setImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+252 ");
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
   const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted")
+      return alert("You need to enable permission to access the library.");
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -34,14 +37,17 @@ export default function RegisterScreen() {
   };
 
   const handleChangePhone = (text) => {
-    console.log(text.length);
-    if (text.length === 4) {
-      text = text + "-";
+    if (text.length === 0) {
+      setPhone("+252 ");
+    } else if (text.length === 4) {
+      setPhone(text + " ");
+    } else if (text.length === 8) {
+      setPhone(text + " ");
+    } else if (text.length === 12) {
+      setPhone(text + " ");
+    } else {
+      setPhone(text);
     }
-    if (text.length === 9) {
-      text = text + "-";
-    }
-    setPhone(text);
   };
 
   return (
@@ -208,7 +214,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     margin: 12,
-    borderWidth: 0.3,
+    borderBottomWidth: 0.3,
     borderColor: "#171717",
     padding: 10,
     borderRadius: 2,
