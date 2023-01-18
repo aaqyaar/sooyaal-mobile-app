@@ -7,7 +7,7 @@ import {
   Vibration,
   Image,
 } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 import useAuth from "../../hooks/useAuth";
@@ -18,23 +18,6 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* <TouchableOpacity
-        style={{
-          position: "absolute",
-          top: 60,
-          left: 15,
-          bottom: 2,
-
-          height: 40,
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "row",
-        }}
-        onPress={() => navigation.navigate("Login")}
-      >
-        <Ionicons name="arrow-back-outline" size={24} color="black" />
-      </TouchableOpacity> */}
       <TouchableOpacity
         style={{
           position: "absolute",
@@ -51,7 +34,6 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("Profile")}
       >
         <Image
-          // source={"https://github.com/aaqyaar.png"}
           source={{
             uri:
               auth?.data?.photoURL ||
@@ -64,35 +46,25 @@ export default function HomeScreen({ navigation }) {
           }}
         />
       </TouchableOpacity>
+
       {/* card with posts using ScrollView */}
       <ScrollView style={styles.scrollView}>
         {[...Array(10)].map((_, i) => {
           return (
-            <View
-              key={i}
-              style={{
-                backgroundColor: "#171717",
-                width: "100%",
-                height: 200,
-                borderRadius: 10,
-                marginTop: 20,
-                padding: 10,
-                shadowColor: "#171717",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.5,
-                shadowRadius: 3.84,
-                elevation: 6,
-              }}
-            >
-              <Text style={{ color: "#f5f5f5", fontSize: 20 }}>
+            <View key={i} style={styles.card}>
+              <Image
+                source={{
+                  uri: "https://www.traveltourxp.com/wp-content/uploads/2016/09/Attractions-Of-Somalia.jpg",
+                }}
+                style={styles.image}
+              />
+
+              <Text style={{ color: "#171717", fontSize: 20 }}>
                 Post {i + 1}
               </Text>
               <Text
                 style={{
-                  color: "#f5f5f5",
+                  color: "#171717",
                   fontSize: 15,
                   paddingTop: 10,
                   paddingBottom: 10,
@@ -117,9 +89,9 @@ export default function HomeScreen({ navigation }) {
                 >
                   <TouchableOpacity>
                     <Ionicons
-                      name="heart"
+                      name="heart-outline"
                       size={24}
-                      color="#f5f5f5"
+                      color="#171717"
                       style={{
                         marginRight: 10,
                       }}
@@ -128,9 +100,9 @@ export default function HomeScreen({ navigation }) {
 
                   <TouchableOpacity>
                     <AntDesign
-                      name="like1"
+                      name="like2"
                       size={24}
-                      color="#f5f5f5"
+                      color="#171717"
                       style={{
                         marginRight: 10,
                       }}
@@ -138,9 +110,9 @@ export default function HomeScreen({ navigation }) {
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <AntDesign
-                      name="dislike1"
+                      name="dislike2"
                       size={24}
-                      color="#f5f5f5"
+                      color="#171717"
                       style={{
                         marginRight: 10,
                       }}
@@ -154,15 +126,12 @@ export default function HomeScreen({ navigation }) {
                   }}
                   onPress={() => Vibration.vibrate(100)}
                 >
+                  <Text style={{ color: "#171717" }}>Read More</Text>
                   <Ionicons
-                    name="share-social-outline"
-                    size={24}
-                    color="#f5f5f5"
-                    style={{
-                      marginRight: 10,
-                    }}
+                    name="chevron-forward-outline"
+                    size={20}
+                    color="#171717"
                   />
-                  <Text style={{ color: "#f5f5f5" }}>Share</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -185,8 +154,34 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     marginTop: 100,
-    padding: 20,
+    paddingHorizontal: 25,
     // alignItems: "center",
     // justifyContent: "center",
+  },
+
+  card: {
+    backgroundColor: "#fff",
+    width: "100%",
+    height: "auto",
+    borderRadius: 5,
+    marginTop: 10,
+    padding: 10,
+    shadowColor: "#e5e7eb",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 2,
+    shadowRadius: 10,
+    elevation: 2,
+  },
+
+  image: {
+    height: 200,
+    width: undefined,
+    borderRadius: 2,
+    marginBottom: 10,
+    flex: 1,
+    resizeMode: "cover",
   },
 });
