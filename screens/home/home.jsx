@@ -12,6 +12,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 import useAuth from "../../hooks/useAuth";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Feather } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
   const { auth } = useAuth();
@@ -19,37 +20,44 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity
+      <View
         style={{
-          position: "absolute",
-          top: 60,
-          right: 15,
-          bottom: 2,
-
-          height: 40,
-          flex: 1,
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
           flexDirection: "row",
+          marginHorizontal: 30,
+          marginTop: 25,
+          marginBottom: 15,
         }}
-        onPress={() => navigation.navigate("Profile")}
       >
-        <Image
-          source={{
-            uri:
-              auth?.data?.photoURL ||
-              "https://www.moveo.it/wp-content/uploads/2018/10/empty-avatar.png",
-          }}
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: 50,
-          }}
-        />
-      </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <Image
+            source={{
+              uri:
+                auth?.data?.photoURL ||
+                "https://www.moveo.it/wp-content/uploads/2018/10/empty-avatar.png",
+            }}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 50,
+            }}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <Feather name="menu" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
 
       {/* card with posts using ScrollView */}
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={{
+          padding: 0,
+        }}
+        showsVerticalScrollIndicator
+      >
         {[...Array(10)].map((_, i) => {
           return (
             <View key={i} style={styles.card}>
@@ -151,13 +159,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   scrollView: {
-    // backgroundColor: "#171717",
     height: "100%",
     width: "100%",
-    marginTop: 60,
+
     paddingHorizontal: 25,
-    // alignItems: "center",
-    // justifyContent: "center",
   },
 
   card: {
@@ -169,12 +174,12 @@ const styles = StyleSheet.create({
     padding: 10,
     shadowColor: "#e5e7eb",
     shadowOffset: {
-      width: 0,
-      height: 1,
+      width: 4,
+      height: 10,
     },
-    shadowOpacity: 2,
-    shadowRadius: 10,
-    elevation: 2,
+    shadowOpacity: 99,
+    shadowRadius: 20,
+    elevation: 10,
   },
 
   image: {

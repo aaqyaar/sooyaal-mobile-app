@@ -98,5 +98,9 @@ export const CustomFontsProvider = ({ children }) => {
     return null;
   }
 
-  return <CustomFontsContext.Provider>{children}</CustomFontsContext.Provider>;
+  return (
+    <CustomFontsContext.Provider value={null}>
+      {children}
+    </CustomFontsContext.Provider>
+  );
 };

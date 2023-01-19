@@ -46,7 +46,6 @@ export default function ForgotPasswordScreen() {
       <TextInput
         autoCapitalize={false}
         autoCorrect={false}
-        autoFocus={true}
         autoCompleteType="email"
         style={styles.input}
         placeholder="Email Address - example@gmail.com)"

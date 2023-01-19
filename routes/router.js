@@ -50,7 +50,7 @@ export default function Router() {
           name="Register"
           component={RegisterScreen}
           options={{
-            headerShadowVisible: true,
+            headerShadowVisible: false,
             headerTitle: "Create Account",
             headerTitleAlign: "center",
             headerTitleStyle: {

@@ -1,9 +1,16 @@
 import { useState } from "react";
 
-import { StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import useAuth from "../../hooks/useAuth";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { fonts } from "../../constants/fonts";
+import { Link } from "@react-navigation/native";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -15,12 +22,12 @@ export default function LoginScreen({ navigation }) {
       return alert("Please enter your email and password");
     } else {
       try {
-        const response = await login(email, password);
-        if (response.data && response.data) {
-          navigation.navigate("Home");
-        } else {
-          alert(response.message ? response.message : "An error occured");
-        }
+        // const response = await login(email, password);
+        // if (response.data && response.data) {
+        navigation.navigate("Home");
+        // } else {
+        //   alert(response.message ? response.message : "An error occured");
+        // }
       } catch (error) {
         alert(error);
       }
@@ -57,16 +64,18 @@ export default function LoginScreen({ navigation }) {
         onChangeText={(text) => setPassword(text)}
       />
 
-      <TouchableOpacity
+      <View
         style={{
           width: "80%",
           justifyContent: "flex-end",
           flexDirection: "row",
+          marginVertical: 10,
         }}
-        onPress={() => navigation.navigate("ForgotPassword")}
       >
-        <Text style={styles.forgotPasswordTxt}>Forgot your password?</Text>
-      </TouchableOpacity>
+        <Link to={"/ForgotPassword"}>
+          <Text style={styles.forgotPasswordTxt}>Forgot your password?</Text>
+        </Link>
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
@@ -83,13 +92,18 @@ export default function LoginScreen({ navigation }) {
       >
         Don't have an account?{" "}
       </Text>
-      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+      <Link to={"/Register"}>
         <Text
-          style={{ color: "#171717", fontWeight: "bold", paddingVertical: 2 }}
+          style={{
+            color: "#171717",
+            fontWeight: "bold",
+            paddingVertical: 2,
+            fontSize: 15,
+          }}
         >
           Sign up
         </Text>
-      </TouchableOpacity>
+      </Link>
     </SafeAreaView>
   );
 }
@@ -146,13 +160,14 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginTop: 20,
     padding: 10,
-    shadowColor: "#000",
+    shadowColor: "#f4f4f4",
     shadowOffset: {
-      width: 0,
-      height: 12,
+      width: 10,
+      height: 10,
     },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
+    shadowOpacity: 2,
+    shadowRadius: 10,
+    elevation: 4,
   },
 
   buttonText: {

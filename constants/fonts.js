@@ -1,12 +1,5 @@
 export const fonts = {
   primary: {
-    thin: "Lato_100Thin",
-    light: "Lato_300Light",
-    regular: "Lato_400Regular",
-    bold: "Lato_700Bold",
-    black: "Lato_900Black",
-  },
-  secondary: {
     thin: "Inter_100Thin",
     light: "Inter_300Light",
     regular: "Inter_400Regular",
@@ -15,6 +8,13 @@ export const fonts = {
     bold: "Inter_700Bold",
     extraBold: "Inter_800ExtraBold",
     black: "Inter_900Black",
+  },
+  secondary: {
+    thin: "Lato_100Thin",
+    light: "Lato_300Light",
+    regular: "Lato_400Regular",
+    bold: "Lato_700Bold",
+    black: "Lato_900Black",
   },
   tertiary: {
     thin: "Poppins_100Thin",
