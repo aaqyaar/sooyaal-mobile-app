@@ -8,6 +8,7 @@ import {
   RegisterScreen,
   VerifyCodeScreen,
 } from "../screens";
+import { fonts } from "../constants/fonts";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,15 +38,24 @@ export default function Router() {
           name="ForgotPassword"
           component={ForgotPasswordScreen}
           options={{
-            headerShadowVisible: false,
+            headerShadowVisible: true,
             headerTitle: "Forgot Password",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: fonts.primary.bold,
+            },
           }}
         />
         <Stack.Screen
           name="Register"
           component={RegisterScreen}
           options={{
+            headerShadowVisible: true,
             headerTitle: "Create Account",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: fonts.primary.bold,
+            },
           }}
         />
         <Stack.Screen

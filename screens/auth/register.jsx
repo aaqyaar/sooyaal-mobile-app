@@ -211,7 +211,6 @@ const styles = StyleSheet.create({
   label: {
     color: "#171717",
     fontSize: 15,
-    fontWeight: "lighter",
     marginLeft: 10,
 
     fontFamily: fonts.primary.regular,
