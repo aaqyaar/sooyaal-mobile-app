@@ -1,15 +1,9 @@
 import { useState } from "react";
 
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
 import useAuth from "../../hooks/useAuth";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { fonts } from "../../constants/fonts";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -20,18 +14,19 @@ export default function LoginScreen({ navigation }) {
     if (email.length < 1 || password.length < 1) {
       return alert("Please enter your email and password");
     } else {
-      // try {
-      //   const response = await login(email, password);
-      //   if (response.data && response.data) {
-      navigation.navigate("Home");
-      //   } else {
-      //     alert(response.message ? response.message : "An error occured");
-      //   }
-      // } catch (error) {
-      //   alert(error);
-      // }
+      try {
+        const response = await login(email, password);
+        if (response.data && response.data) {
+          navigation.navigate("Home");
+        } else {
+          alert(response.message ? response.message : "An error occured");
+        }
+      } catch (error) {
+        alert(error);
+      }
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.heading}>Sooyaal</Text>
@@ -70,19 +65,11 @@ export default function LoginScreen({ navigation }) {
         }}
         onPress={() => navigation.navigate("ForgotPassword")}
       >
-        <Text
-          style={{
-            color: "#171717",
-            marginTop: 20,
-            // flex: 1,
-          }}
-        >
-          Forgot your password?
-        </Text>
+        <Text style={styles.forgotPasswordTxt}>Forgot your password?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={{ color: "#f5f5f5", fontSize: 20 }}>Login</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
       <Text
@@ -91,6 +78,7 @@ export default function LoginScreen({ navigation }) {
           marginTop: 20,
           alignItems: "center",
           justifyContent: "center",
+          fontFamily: fonts.primary.regular,
         }}
       >
         Don't have an account?{" "}
@@ -112,11 +100,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+
+    fontFamily: fonts.primary.regular,
   },
   heading: {
     color: "#171717",
-    fontSize: 30,
-    fontWeight: "900",
+    fontSize: 50,
+    fontFamily: fonts.primary.black,
   },
   content: {
     color: "#171717",
@@ -124,6 +114,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: "80%",
     marginTop: 10,
+    fontFamily: fonts.primary.regular,
   },
   input: {
     backgroundColor: "transparent",
@@ -136,6 +127,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 10,
     shadowColor: "#000",
+
+    fontFamily: fonts.primary.regular,
+  },
+
+  forgotPasswordTxt: {
+    color: "#171717",
+    marginTop: 20,
+    fontFamily: fonts.primary.regular,
   },
 
   button: {
@@ -154,5 +153,11 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.58,
     shadowRadius: 16.0,
+  },
+
+  buttonText: {
+    color: "#f5f5f5",
+    fontSize: 20,
+    fontFamily: fonts.primary.regular,
   },
 });

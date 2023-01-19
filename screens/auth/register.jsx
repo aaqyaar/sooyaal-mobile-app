@@ -11,6 +11,7 @@ import * as ImagePicker from "expo-image-picker";
 import { EvilIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { fonts } from "../../constants/fonts";
 
 export default function RegisterScreen() {
   const [image, setImage] = useState(null);
@@ -212,6 +213,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "lighter",
     marginLeft: 10,
+
+    fontFamily: fonts.primary.regular,
   },
   input: {
     height: 40,
@@ -220,6 +223,8 @@ const styles = StyleSheet.create({
     borderColor: "#171717",
     padding: 10,
     borderRadius: 2,
+
+    fontFamily: fonts.primary.regular,
   },
 
   image: {
