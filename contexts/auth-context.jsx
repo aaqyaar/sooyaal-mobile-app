@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../utils/axios";
 
 export const AuthContext = createContext();
 
@@ -8,24 +8,15 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(null);
 
   const login = async (email, password) => {
-    try {
-      const response = await axios.post(
-        "http://localhost/php-training/api/login.php",
-        {
-          email,
-          password,
-        }
-      );
-      const data = await response.data;
+    const response = await axios.post("/auth/login", {
+      email,
+      password,
+    });
 
-      setAuth(data);
+    setAuth(response.data);
 
-      await AsyncStorage.setItem("auth", JSON.stringify({ auth }));
-
-      return auth;
-    } catch (error) {
-      return error;
-    }
+    await AsyncStorage.setItem("auth", JSON.stringify({ auth }));
+    return response.data;
   };
 
   const resendCode = async (email) => {

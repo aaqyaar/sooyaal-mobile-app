@@ -7,7 +7,7 @@
     "icon": "./assets/sooyaal.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/sooyaal.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

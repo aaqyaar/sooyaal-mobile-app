@@ -35,86 +35,88 @@ export default function ForgotPasswordScreen() {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const isSuccess = true;
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.heading}>Forgot Password</Text>
       <Text style={styles.content}>
-        Enter your email address and we will send you a link to reset your
-        password via email. If you don't have an account, you can create one by
-        clicking the button below.
+        {isSuccess
+          ? "Enter the code sent to your email address to reset your password "
+          : "Enter your email address to reset your password"}
       </Text>
-      <TextInput
-        autoCapitalize={false}
-        autoCorrect={false}
-        autoCompleteType="email"
-        style={styles.input}
-        placeholder="Email Address - example@gmail.com)"
-        placeholderTextColor={"#a3a3a3"}
-      />
-
-      <View style={{ flexDirection: "row", marginBottom: 10 }}>
-        {inputs.map((input, index) => (
-          <TextInput
-            ref={(input) => {
-              inputsRefs[index] = input;
-            }}
-            key={index}
-            style={styles.codeInput}
-            maxLength={1}
-            keyboardType="number-pad"
-            value={input}
-            onChangeText={(text) => {
-              handleChange(text, index);
-            }}
-            onSubmitEditing={() => handleSubmit(index)}
-          />
-        ))}
-      </View>
-
-      <View
-        style={{
-          position: "relative",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+      {!isSuccess ? (
         <TextInput
           autoCapitalize={false}
           autoCorrect={false}
-          autoCompleteType="password"
-          keyboardType="visible-password"
+          autoCompleteType="email"
           style={styles.input}
-          placeholder="New Password"
+          placeholder="Email Address - example@gmail.com)"
           placeholderTextColor={"#a3a3a3"}
-          secureTextEntry={!showPassword}
-          maxLength={30}
         />
+      ) : (
+        <>
+          <View style={{ flexDirection: "row", marginBottom: 10 }}>
+            {inputs.map((input, index) => (
+              <TextInput
+                ref={(input) => {
+                  inputsRefs[index] = input;
+                }}
+                key={index}
+                style={styles.codeInput}
+                maxLength={1}
+                keyboardType="number-pad"
+                value={input}
+                onChangeText={(text) => {
+                  handleChange(text, index);
+                }}
+                onSubmitEditing={() => handleSubmit(index)}
+              />
+            ))}
+          </View>
+          <View
+            style={{
+              position: "relative",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <TextInput
+              autoCapitalize={false}
+              autoCorrect={false}
+              autoCompleteType="password"
+              keyboardType="visible-password"
+              style={styles.input}
+              placeholder="New Password"
+              placeholderTextColor={"#a3a3a3"}
+              secureTextEntry={!showPassword}
+              maxLength={30}
+            />
 
-        {PasswordVisibilityHandler(showPassword, handleShowPassword)}
-      </View>
+            {PasswordVisibilityHandler(showPassword, handleShowPassword)}
+          </View>
+          <View
+            style={{
+              position: "relative",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <TextInput
+              autoCapitalize={false}
+              autoCorrect={false}
+              autoCompleteType="password"
+              keyboardType="visible-password"
+              style={styles.input}
+              placeholder="Retype new Password"
+              placeholderTextColor={"#a3a3a3"}
+              secureTextEntry={!showPassword}
+              maxLength={30}
+            />
 
-      <View
-        style={{
-          position: "relative",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <TextInput
-          autoCapitalize={false}
-          autoCorrect={false}
-          autoCompleteType="password"
-          keyboardType="visible-password"
-          style={styles.input}
-          placeholder="Retype new Password"
-          placeholderTextColor={"#a3a3a3"}
-          secureTextEntry={!showPassword}
-          maxLength={30}
-        />
-
-        {PasswordVisibilityHandler(showPassword, handleShowPassword)}
-      </View>
-
+            {PasswordVisibilityHandler(showPassword, handleShowPassword)}
+          </View>
+        </>
+      )}
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
@@ -161,12 +163,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  heading: {
-    color: "#171717",
-    fontSize: 30,
-    fontWeight: "900",
-    marginBottom: 10,
-  },
+
   content: {
     color: "#171717",
     fontSize: 15,
@@ -202,7 +199,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 50,
+    margin: 10,
     marginBottom: 50,
   },
   buttonText: {

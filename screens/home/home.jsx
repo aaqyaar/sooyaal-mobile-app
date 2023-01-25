@@ -13,10 +13,16 @@ import { AntDesign } from "@expo/vector-icons";
 import useAuth from "../../hooks/useAuth";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
   const { auth } = useAuth();
-  console.log(auth);
+
+  const user = {
+    name: auth?.data?.name,
+    email: auth?.data?.email,
+    photoURL: auth?.data?.photoURL,
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -34,14 +40,10 @@ export default function HomeScreen({ navigation }) {
           <Image
             source={{
               uri:
-                auth?.data?.photoURL ||
+                user.photoURL ||
                 "https://www.moveo.it/wp-content/uploads/2018/10/empty-avatar.png",
             }}
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: 50,
-            }}
+            style={styles.avatar}
           />
         </TouchableOpacity>
 
@@ -61,6 +63,24 @@ export default function HomeScreen({ navigation }) {
         {[...Array(10)].map((_, i) => {
           return (
             <View key={i} style={styles.card}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+
+                  marginTop: 5,
+                  marginBottom: 15,
+                }}
+              >
+                <Text style={{ color: "#171717", fontSize: 15 }}>
+                  {user.name}
+                </Text>
+
+                <TouchableOpacity>
+                  <AntDesign name="ellipsis1" size={24} color="black" />
+                </TouchableOpacity>
+              </View>
               <Image
                 source={{
                   uri: "https://www.traveltourxp.com/wp-content/uploads/2016/09/Attractions-Of-Somalia.jpg",
@@ -189,5 +209,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flex: 1,
     resizeMode: "cover",
+  },
+
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 50,
   },
 });

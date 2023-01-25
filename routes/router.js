@@ -9,17 +9,18 @@ import {
   VerifyCodeScreen,
 } from "../screens";
 import { fonts } from "../constants/fonts";
+import useAuth from "../hooks/useAuth";
 
 const Stack = createNativeStackNavigator();
 
 export default function Router() {
-  const isAuth = false;
+  const { auth } = useAuth();
+
+  const isAuth = auth?.data?.token ? true : false;
+
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        // initialRouteName={isAuth ? "Home" : "Login"}
-        initialRouteName="Login"
-      >
+      <Stack.Navigator initialRouteName={isAuth ? "Home" : "Login"}>
         <Stack.Screen
           name="Home"
           component={HomeScreen}
